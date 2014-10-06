@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+  <!-- Inherit our applications main module.                      -->
+  <inherits name='fr.istic.master2.gli.tpgwt' />
+
+  <!-- Specify the path to any remote services.                   -->
+  <servlet path="/tpgwt/greet" class="fr.istic.master2.gli.server.GreetingServiceImpl" />
+
+</module>
