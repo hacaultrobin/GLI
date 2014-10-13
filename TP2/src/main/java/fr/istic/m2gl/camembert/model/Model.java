@@ -2,6 +2,8 @@ package fr.istic.m2gl.camembert.model;
 
 import java.util.Collection;
 
+import fr.istic.m2gl.camembert.command.ICommand;
+
 public interface Model {
 
 	public String getTitle();
@@ -25,5 +27,7 @@ public interface Model {
 	public void addField(String name, String desc, float value);
 
 	public void removeField(String name);
+	
+	public void setCamembertChangedCmd(ICommand cmd);
 
 }

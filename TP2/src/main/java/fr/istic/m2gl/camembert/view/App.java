@@ -19,12 +19,11 @@ public class App extends JFrame {
 		setSize(WIDTH, HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBackground(Color.white);
-		
+
 		Model m = new CamembertModel("Test");
-		m.addField("A", "Le champs A", 10.5f);
-		m.addField("B", "Le champs B", 4.5f);
+		m.addField("A", "Le champs A", 8);
+		m.addField("B", "Le champs B", 8);
 		m.addField("C", "Le champs C", 8);
-		
 		
 //		JPanel panel = new JPanel();
 //		panel.setBackground(Color.white);

@@ -83,5 +83,8 @@ public class CamembertModel implements Model {
 		}
 	}
 	
+	public void setCamembertChangedCmd(ICommand cmd) {
+		camembertChangedCmd = cmd;
+	}
 	
 }
