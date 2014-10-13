@@ -38,6 +38,7 @@ public class Camembert extends JComponent {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D graph = (Graphics2D) g;
+		int gap;
 		
 		float start = 0;
 		float delta = 0;
@@ -69,10 +70,13 @@ public class Camembert extends JComponent {
 
 		graph.setColor(Color.GRAY);
 		graph.setFont(new Font("Arial", Font.BOLD, 11));
-		graph.drawString(title, App.WIDTH/2, App.HEIGHT/2-10);
+		gap = title.length()*3;
+		graph.drawString(title, App.WIDTH/2-gap, App.HEIGHT/2-10);
 
 		graph.setColor(Color.WHITE);
-		graph.drawString(totalValue+" €", App.WIDTH/2, App.HEIGHT/2+10);
+		String total = totalValue+" €";
+		gap = total.length()*3;
+		graph.drawString(total, App.WIDTH/2-gap, App.HEIGHT/2+10);
 		
 	}
 }
