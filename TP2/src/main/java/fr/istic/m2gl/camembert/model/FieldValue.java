@@ -5,6 +5,11 @@ public class FieldValue {
 	private String desc;
 	private float value;
 	
+	public FieldValue(String desc, float value) {
+		this.desc = desc;
+		this.value = value;
+	}
+	
 	public String getDesc() {
 		return desc;
 	}
