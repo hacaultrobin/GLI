@@ -1,18 +1,27 @@
 package fr.istic.m2gl.camembert.controller;
 
-import fr.istic.m2gl.camembert.view.Camembert;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import fr.istic.m2gl.camembert.view.View;
 
 public class CamembertController {
 	
-	private Camembert camembert;
-	
-	public CamembertController(Camembert camembert) {
-		this.camembert = camembert;
-		this.camembert.setOnFieldClickCommand(() -> handleOnFieldClickCommand());
+	public CamembertController(View view) {
+		view.getCamembertView().addMouseListener(new MouseListener() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				view.handleClick(e.getPoint());		
+			}
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+			@Override
+			public void mouseExited(MouseEvent e) {}
+		});
 	}
 	
-	private void handleOnFieldClickCommand() {
-		System.err.println("Click on field --> TODO update view");
-	}
-
 }
