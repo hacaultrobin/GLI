@@ -232,17 +232,33 @@ public class BoardImpl implements Board {
 	 * Indexs starts from 0 here, we work directly on the arrays
 	 */
 	@Override
-	public void addTileRandomly() {
-		Random rand = new Random();
-		int i = rand.nextInt(sideSizeInSquares);
-		int j = rand.nextInt(sideSizeInSquares);
-		System.out.println(i + " - " + j);
-		Tile tile = getTile(i+1,j+1);
-		if (tile != null) {
-			addTileRandomly(); // Search an other tile
-		} else {
-			tile = new TileImpl(1);
-			nextBoard[i][j] = tile;
+	public boolean addTileRandomly() {
+		if (!isGameOver()) {
+			Random rand = new Random();
+			int i = rand.nextInt(sideSizeInSquares);
+			int j = rand.nextInt(sideSizeInSquares);
+			System.out.println(i + " - " + j);
+			Tile tile = getTile(i+1,j+1);
+			if (tile != null) {
+				return addTileRandomly(); // Search an other tile
+			} else {
+				System.out.println("ADD RANDOM");
+				tile = new TileImpl(1);
+				nextBoard[i][j] = tile;
+				return true;
+			}
 		}
+		return false;
+	}
+	
+	public boolean isGameOver() {
+		for (int i = 0; i < nextBoard.length; i++) {
+			for (int j = 0; j < nextBoard[i].length; j++) {
+				if (nextBoard[i][j] == null) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 }

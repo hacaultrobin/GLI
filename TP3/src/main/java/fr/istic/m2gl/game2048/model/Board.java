@@ -38,9 +38,14 @@ public interface Board {
     
     /**
      * Adds a tile randomly to the board, on an unused tile
-     * @pre The Board contains free tiles
+     * No effect if isGameOver()
      */
-    public void addTileRandomly();
+    public boolean addTileRandomly();
+    
+    /**
+     * @return Is the game over ?
+     */
+    public boolean isGameOver();
 
 
 }
