@@ -242,7 +242,7 @@ public class BoardImpl implements Board {
 			addTileRandomly(); // Search an other tile
 		} else {
 			tile = new TileImpl(1);
-			currentBoard[i][j] = tile;
+			nextBoard[i][j] = tile;
 		}
 	}
 }

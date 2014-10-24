@@ -14,6 +14,7 @@ public class App extends Application {
         primaryStage.setTitle("2048");
         primaryStage.setScene(new Scene(root, 400, 400));
         primaryStage.show();
+        root.requestFocus();
     }
 
     public static void main(String[] args) {
