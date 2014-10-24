@@ -8,11 +8,15 @@ import fr.istic.m2gl.game2048.model.BoardImpl;
 import fr.istic.m2gl.game2048.model.Tile;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class Controller implements Initializable {
 	
@@ -32,37 +36,40 @@ public class Controller implements Initializable {
 	
 	@FXML
 	public void handleMove(KeyEvent e) {
+		boolean move;
 		switch (e.getCode()) {
 			case LEFT:
 				b.packIntoDirection(Board.Direction.LEFT);
-				b.addTileRandomly();
-				b.commit();
-				updateGrid();
+				move = true;
 				break;
 
 			case RIGHT:
 				b.packIntoDirection(Board.Direction.RIGHT);
-				b.addTileRandomly();
-				b.commit();
-				updateGrid();
+				move = true;
 				break;
 				
 			case UP:
 				b.packIntoDirection(Board.Direction.TOP);
-				b.addTileRandomly();
-				b.commit();
-				updateGrid();
+				move = true;
 				break;
 				
 			case DOWN:
 				b.packIntoDirection(Board.Direction.BOTTOM);
-				b.addTileRandomly();
-				b.commit();
-				updateGrid();
+				move = true;				
 				break;
 
 			default:
+				move = false;
 				break;
+		}
+		
+		if (move) {
+			if (b.addTileRandomly()) {
+				b.commit();
+				updateGrid();
+			} else {
+				System.err.println("Game Over !");
+			}
 		}
 	}
 
@@ -72,7 +79,7 @@ public class Controller implements Initializable {
 			Tile t = b.getTile(GridPane.getRowIndex(child)+1, GridPane.getColumnIndex(child)+1);
 
 			// Suppression du contenue de la case
-			Pane p = (Pane) child;
+			StackPane p = (StackPane) child;
 			p.getChildren().clear();
 			
 			// Maj de la case
@@ -80,7 +87,11 @@ public class Controller implements Initializable {
 				int value = (int) Math.pow(2, t.getRank());
 				
 				Label l = new Label(value+"");
+				l.setFont(Font.font("Arial", FontWeight.BOLD, 26));
+				l.setTextFill(Color.GREY);
+				
 				p.getChildren().add(l);
+				p.setAlignment(Pos.CENTER);
 			}
 		}
 	}

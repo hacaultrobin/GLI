@@ -51,9 +51,8 @@ public class BoardImpl implements Board {
     public void packIntoDirection(Direction direction) {
         this.directionToPackInto = direction;
         for (int i = 1; i <= sideSizeInSquares; i++) {
-            packLine(i);
+        	packLine(i);
         }
-
     }
 
     /**
@@ -69,42 +68,37 @@ public class BoardImpl implements Board {
 
 
     private void packLine(int lineNumber) {
-      /*
-      * Scan the current board line looking for two consecutive tiles
-      * with the same rank
-      * When this case is encountered, write a single tile with rank+1
-      * Otherwise just copy the tile (in practice packing it in the nex board)
-      * Remember that indices are 1-based in this code
-      * Conversion to Java arrays indices is done in computeLineIndex and computeColumnIndex
-      */
-        int readIndex = 1; // Position of the tile to be read
-        int writeIndex = 0; // Position of the last tile written
+    	/*
+    	 * Scan the current board line looking for two consecutive tiles
+    	 * with the same rank
+    	 * When this case is encountered, write a single tile with rank+1
+    	 * Otherwise just copy the tile (in practice packing it in the nex board)
+    	 * Remember that indices are 1-based in this code
+    	 * Conversion to Java arrays indices is done in computeLineIndex and computeColumnIndex
+    	 */
+    	int readIndex = 1; // Position of the tile to be read
+    	int writeIndex = 0; // Position of the last tile written
 
-        while (readIndex <= sideSizeInSquares) {
-            // Find next tile
-            while ((readIndex <= sideSizeInSquares)
-                    && (readTile(currentBoard, lineNumber, readIndex) == null)) {
-                readIndex++;
-            }
-            if (readIndex > sideSizeInSquares) {
-                break; // Done with the line
-            }
-            // Try to merge with previous tile
-            if ((writeIndex > 0) &&
-                    (readTile(nextBoard, lineNumber, writeIndex).getRank()
-                            == readTile(currentBoard, lineNumber, readIndex).getRank())) {
-                // Merge previously written tile and currently read one
-                readTile(nextBoard, lineNumber, writeIndex).incrementRank();
-            } else {
-                // Advance write index and copy currently read tile
-                writeIndex++;
-                writeTile(nextBoard, readTile(currentBoard, lineNumber, readIndex), lineNumber, writeIndex);
-            }
-            // Done with the current tile read, move forward
-            readIndex++;
-        }
-
-
+    	while (readIndex <= sideSizeInSquares) {
+    		// Find next tile
+    		while ((readIndex <= sideSizeInSquares) && (readTile(currentBoard, lineNumber, readIndex) == null)) {
+    			readIndex++;
+    		}
+    		if (readIndex > sideSizeInSquares) {
+    			break; // Done with the line
+    		}
+    		// Try to merge with previous tile
+    		if ((writeIndex > 0) && (readTile(nextBoard, lineNumber, writeIndex).getRank() == readTile(currentBoard, lineNumber, readIndex).getRank())) {
+    			// Merge previously written tile and currently read one
+    			readTile(nextBoard, lineNumber, writeIndex).incrementRank();
+    		} else {
+    			// Advance write index and copy currently read tile
+    			writeIndex++;
+    			writeTile(nextBoard, readTile(currentBoard, lineNumber, readIndex), lineNumber, writeIndex);
+    		}
+    		// Done with the current tile read, move forward
+    		readIndex++;
+    	}
     }
 
     /**
