@@ -1,5 +1,6 @@
 package fr.istic.m2gl.game2048.model;
 
+import java.util.Random;
 import java.util.logging.Logger;
 
 /**
@@ -226,4 +227,22 @@ public class BoardImpl implements Board {
             logger.info(outputBuffer.toString());
         }
     }
+
+	/*
+	 * Indexs starts from 0 here, we work directly on the arrays
+	 */
+	@Override
+	public void addTileRandomly() {
+		Random rand = new Random();
+		int i = rand.nextInt(sideSizeInSquares);
+		int j = rand.nextInt(sideSizeInSquares);
+		System.out.println(i + " - " + j);
+		Tile tile = getTile(i+1,j+1);
+		if (tile != null) {
+			addTileRandomly(); // Search an other tile
+		} else {
+			tile = new TileImpl(1);
+			currentBoard[i][j] = tile;
+		}
+	}
 }

@@ -35,6 +35,12 @@ public interface Board {
      * NOTE: do we need this in the interface?
      */
     void commit();
+    
+    /**
+     * Adds a tile randomly to the board, on an unused tile
+     * @pre The Board contains free tiles
+     */
+    public void addTileRandomly();
 
 
 }
