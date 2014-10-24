@@ -63,7 +63,7 @@ public class Controller implements Initializable {
 				break;
 		}
 		
-		if (move) {
+		if (move && b.wasModified()) {
 			if (b.addTileRandomly()) {
 				b.commit();
 				updateGrid();

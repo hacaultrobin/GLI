@@ -47,5 +47,6 @@ public interface Board {
      */
     public boolean isGameOver();
 
+    public boolean wasModified();
 
 }

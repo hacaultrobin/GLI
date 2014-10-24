@@ -252,4 +252,17 @@ public class BoardImpl implements Board {
 		}
 		return true;
 	}
+	
+	public boolean wasModified() {
+		for (int i = 0; i < currentBoard.length; i++) {
+			for (int j = 0; j < currentBoard[i].length; j++) {
+				if (currentBoard[i][j] != nextBoard[i][j]) {
+					return true;
+				}
+			}
+		}
+		// Reset nextBoard
+        nextBoard = new Tile[sideSizeInSquares][sideSizeInSquares];
+		return false;
+	}
 }
