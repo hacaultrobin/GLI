@@ -226,30 +226,42 @@ public class BoardImpl implements Board {
 	 * Indexs starts from 0 here, we work directly on the arrays
 	 */
 	@Override
-	public boolean addTileRandomly() {
-		if (!isGameOver()) {
-			Random rand = new Random();
-			int i = rand.nextInt(sideSizeInSquares);
-			int j = rand.nextInt(sideSizeInSquares);
-			System.out.println(i + " - " + j);
-			if (nextBoard[i][j] != null) {
-				return addTileRandomly(); // Search an other tile
-			} else {
-				nextBoard[i][j] = new TileImpl(rand.nextInt(2) + 1);
-				return true;
-			}
+	public void addTileRandomly() {
+		Random rand = new Random();
+		int i = rand.nextInt(sideSizeInSquares);
+		int j = rand.nextInt(sideSizeInSquares);
+		if (nextBoard[i][j] != null) {
+			addTileRandomly(); // Search an other tile
+		} else {
+			nextBoard[i][j] = new TileImpl(rand.nextInt(2) + 1);
 		}
-		return false;
 	}
 	
 	public boolean isGameOver() {
-		for (int i = 0; i < nextBoard.length; i++) {
-			for (int j = 0; j < nextBoard[i].length; j++) {
-				if (nextBoard[i][j] == null) {
+		// Verif Board plein
+		for (int i = 0; i < currentBoard.length; i++) {
+			for (int j = 0; j < currentBoard[i].length; j++) {
+				if (currentBoard[i][j] == null) {
 					return false;
 				}
 			}
 		}
+		
+		// Comparaison des lignes et colonnes
+		for (int i = 0; i < currentBoard.length; i++) {
+			for (int j = 0; j < currentBoard[i].length-1; j++) {				
+				// Comparaison en ligne
+				if (currentBoard[i][j].getRank() == currentBoard[i][j+1].getRank()) {
+					return false;
+				}
+				
+				// Comparaison en colonne
+				if (currentBoard[j][i].getRank() == currentBoard[j+1][i].getRank()) {
+					return false;
+				}
+			}
+		}
+		
 		return true;
 	}
 	

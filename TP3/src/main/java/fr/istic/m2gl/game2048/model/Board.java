@@ -40,7 +40,7 @@ public interface Board {
      * Adds a tile randomly to the board, on an unused tile
      * No effect if isGameOver()
      */
-    public boolean addTileRandomly();
+    public void addTileRandomly();
     
     /**
      * @return Is the game over ?

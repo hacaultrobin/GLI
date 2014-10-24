@@ -1,6 +1,8 @@
 package fr.istic.m2gl.game2048.controller;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import fr.istic.m2gl.game2048.model.Board;
@@ -21,16 +23,30 @@ import javafx.scene.text.FontWeight;
 public class Controller implements Initializable {
 	
 	private Board b;
+	private List<String> colors = new ArrayList<String>();
 	
 	@FXML
 	private GridPane gridFx;
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		colors.add("#EEE4DA"); //2
+		colors.add("#EDE0C8"); //4
+		colors.add("#F2B179"); //8
+		colors.add("#F59563"); //16
+		colors.add("#F67C5F"); //32
+		colors.add("#F65E3B"); //64
+		colors.add("#EDCF72"); //128
+		colors.add("#EDCC61"); //256
+		colors.add("#EDC850"); //512
+		colors.add("#EDC53F"); //1024
+		colors.add("#EDC22E"); //2048
+		
 		b = new BoardImpl(4);
 		b.addTileRandomly();
 		b.addTileRandomly();
 		b.commit();
+		
 		updateGrid();
 	}
 	
@@ -64,11 +80,12 @@ public class Controller implements Initializable {
 		}
 		
 		if (move && b.wasModified()) {
-			if (b.addTileRandomly()) {
-				b.commit();
-				updateGrid();
-			} else {
+			b.addTileRandomly();
+			b.commit();
+			updateGrid();
+			if (b.isGameOver()) {
 				System.err.println("Game Over !");
+				//System.exit(0);
 			}
 		}
 	}
@@ -87,8 +104,16 @@ public class Controller implements Initializable {
 				int value = (int) Math.pow(2, t.getRank());
 				
 				Label l = new Label(value+"");
+				l.setPrefWidth(200);
+				l.setPrefHeight(200);
+				l.setAlignment(Pos.CENTER);
 				l.setFont(Font.font("Arial", FontWeight.BOLD, 26));
 				l.setTextFill(Color.GREY);
+				try {
+					l.setStyle("-fx-background-color: "+colors.get(t.getRank()));
+				} catch (IndexOutOfBoundsException ignore) {
+					l.setStyle("-fx-background-color: #3C3A32");
+				}
 				
 				p.getChildren().add(l);
 				p.setAlignment(Pos.CENTER);
