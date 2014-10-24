@@ -238,12 +238,10 @@ public class BoardImpl implements Board {
 			int i = rand.nextInt(sideSizeInSquares);
 			int j = rand.nextInt(sideSizeInSquares);
 			System.out.println(i + " - " + j);
-			Tile tile = getTile(i+1,j+1);
-			if (tile != null) {
+			if (nextBoard[i][j] != null) {
 				return addTileRandomly(); // Search an other tile
 			} else {
-				tile = new TileImpl(rand.nextInt(2) + 1);
-				nextBoard[i][j] = tile;
+				nextBoard[i][j] = new TileImpl(rand.nextInt(2) + 1);
 				return true;
 			}
 		}
