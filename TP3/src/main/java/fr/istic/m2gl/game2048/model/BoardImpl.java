@@ -242,8 +242,7 @@ public class BoardImpl implements Board {
 			if (tile != null) {
 				return addTileRandomly(); // Search an other tile
 			} else {
-				System.out.println("ADD RANDOM");
-				tile = new TileImpl(1);
+				tile = new TileImpl(rand.nextInt(2) + 1);
 				nextBoard[i][j] = tile;
 				return true;
 			}
