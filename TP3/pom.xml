@@ -5,8 +5,13 @@
 	<artifactId>2048</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>2048</name>
+
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
 	
-		<dependencies>
+	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

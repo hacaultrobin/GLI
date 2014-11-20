@@ -19,6 +19,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.stage.Popup;
 
 public class Controller implements Initializable {
 	
@@ -84,8 +86,13 @@ public class Controller implements Initializable {
 			b.commit();
 			updateGrid();
 			if (b.isGameOver()) {
-				System.err.println("Game Over !");
-				//System.exit(0);
+				Text t = new Text("Game over!");
+				t.setFont(Font.font("Arial", FontWeight.BOLD, 22));
+				t.setFill(Color.RED);
+				
+		        Popup popup = new Popup();
+		        popup.getContent().add(t);
+		        popup.show(gridFx.getScene().getWindow());
 			}
 		}
 	}
