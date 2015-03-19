@@ -1,3 +1,5 @@
+package fr.istic.m2gl.camembert;
+
 import fr.istic.m2gl.camembert.controller.CamembertController;
 import fr.istic.m2gl.camembert.model.CamembertModel;
 import fr.istic.m2gl.camembert.model.Model;

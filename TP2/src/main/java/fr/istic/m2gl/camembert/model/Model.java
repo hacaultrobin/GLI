@@ -1,7 +1,6 @@
 package fr.istic.m2gl.camembert.model;
 
 import java.util.Collection;
-import java.util.List;
 
 import fr.istic.m2gl.camembert.command.ICommand;
 
