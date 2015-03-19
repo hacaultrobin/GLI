@@ -1,4 +1,3 @@
-GLI
-===
-
-Dépôt des TP de GLI
+# GLI
+## Auteurs
+Anthony LHOMME et Robin HACAULT
